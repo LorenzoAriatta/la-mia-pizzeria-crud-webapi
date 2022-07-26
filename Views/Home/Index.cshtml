@@ -3,9 +3,11 @@
     //ScriptManager.RegisterStartupScript(GetType(), "Javascript", "javascript:loadList(); ", true);
 }
 
-<div class="container d-flex justify-content-center">
+<div class="container">
     <div class="jumbo"></div>
-    <div class="list"></div>
+    <div class="containerList d-flex flex-wrap">
+        <h1 class="col-12">Print Pizze from JSON Data</h1>
+    </div>
 </div>
 
 
@@ -17,17 +19,17 @@
 
             console.log(response);
 
-            if (response.data.length == 200) {
+            if (response.status == 200) {
 
                 response.data.forEach(pizza => {
                     console.log('pizza', pizza);
 
-                    document.querySelector('.list').innerHTML +=
+                    document.querySelector('.containerList').innerHTML +=
                        `
                         <div class="card col-3 text-center gx-3" >
                                 <img style="height:300px" src = "${pizza.image}" class="post-image text-center" />
                                 <h2 class="text-danger" > ${pizza.name}</h2>
-                                <p class="fw-bold" > Price: ${pizza.price}& euro; </p>
+                                <p class="fw-bold" > Price: ${pizza.price}&euro; </p>
                                 <a href = "/Pizza/Details/${pizza.id}" class="btn-dark text-decoration-none
                                 text-black rounded-pill py-2 px-4 text-white" > See the details </a>
                         </div>
