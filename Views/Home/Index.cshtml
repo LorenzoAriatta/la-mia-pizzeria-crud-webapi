@@ -1,12 +1,19 @@
-﻿@{
+﻿@using la_mia_pizzeria_static.Controllers.API
+@{
     ViewData["Title"] = "Home Page";
-    //ScriptManager.RegisterStartupScript(GetType(), "Javascript", "javascript:loadList(); ", true);
+
+    PizzasController pc = new PizzasController();
 }
 
-<div class="container">
+
+
+@*<div class="container">
     <div class="jumbo"></div>
-    <div class="containerList d-flex flex-wrap">
-        <h1 class="col-12">Print Pizze from JSON Data</h1>
+</div>*@
+<div class="d-flex flex-wrap">
+    <h1 class="col-12 text-center my-5">Our Pizze from JSON list</h1>
+    <div class="containerList row justify-content-center" style="column-gap:20px; row-gap:20px">
+
     </div>
 </div>
 
@@ -25,15 +32,16 @@
                     console.log('pizza', pizza);
 
                     document.querySelector('.containerList').innerHTML +=
-                       `
-                        <div class="card col-3 text-center gx-3" >
-                                <img style="height:300px" src="${pizza.image}" class="post-image text-center" />
-                                <h2 class="text-danger"> ${pizza.name}</h2>
-                                <p class="fw-bold">Price: ${pizza.price}&euro; </p>
-                                <a href = "/Pizza/Details/${pizza.id}" class="btn-dark text-decoration-none
-                                text-black rounded-pill py-2 px-4 text-white">See the details</a>
-                        </div>
-                        `;
+                               `
+                                <div class="card col-3 text-center gx-3" >
+                                        <img style="height:300px" src="${pizza.image}" class="post-image text-center" />
+                                        <h2 class="text-danger"> ${pizza.name}</h2>
+                                        <p class="fw-bold">Price: ${pizza.price}&euro; </p>
+                                        <a href = "/Pizza/Details/${pizza.id}" class="btn-dark text-decoration-none
+                                        text-black rounded-pill py-2 px-4 text-white">See the details</a>
+                                </div>
+                                `;
+                        //@pc.Get();
                 });
                
             }
