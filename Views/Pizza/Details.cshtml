@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "PizzaDetail";
+}
+
+@model Pizza;
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 align-self-center p-5 box-txt">
+            <h1 class="text-center text-danger">@Model.Name</h1>
+            <h4 class="mt-5">Categoria:</h4>
+            <p class="mb-5">@Model.Category.Name</p>
+            <h4>Ingredienti:</h4>
+            <ul class="mb-5">
+                @foreach(Ingrediente ingrediente in @Model.ingredients)
+                {
+                    <li>
+                        @ingrediente.Name
+                    </li>
+                }
+            </ul>
+            <h4>Descrizione:</h4>
+            <p class="mb-5">@Model.Description</p>
+            
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area="" asp-controller="Pizza" asp-action="Index">Torna alla lista!</a>
+
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area="" asp-controller="Pizza" asp-action="Edit" asp-route-id="@Model.Id">Modifica la pizza!</a>
+
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area="" asp-controller="Pizza" asp-action="Delete" asp-route-id="@Model.Id">Cancella la pizza!</a>
+
+            <form></form>
+
+        </div>
+        <div class="col-6"><img id="img-detail" src="@Model.Image"/></div>
+    </div>
+</div>
