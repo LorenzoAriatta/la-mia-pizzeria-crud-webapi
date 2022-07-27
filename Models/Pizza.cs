@@ -2,7 +2,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 public class Pizza
 {
     [Key]
@@ -25,6 +24,7 @@ public class Pizza
     [Required(ErrorMessage = "Il campo è obbligatiorio")]
     [Range(1d, 15d, ErrorMessage = "Il prezzo deve essere compreso tra 1 e 15 &euro;")]
     public double Price { get; set; }
+
 
     public List<Ingrediente>? ingredients { get; set; }
 

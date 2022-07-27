@@ -1,6 +1,7 @@
 ﻿using la_mia_pizzeria_static.Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_static.Controllers.API
 {
@@ -21,6 +22,24 @@ namespace la_mia_pizzeria_static.Controllers.API
                 }
 
                 return Ok(pizzaList.ToList());
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            using(PizzaContext db = new PizzaContext())
+            {
+                Pizza pizza = db.Pizza.Where(p => p.Id == id).Include("Category").Include("ingredients").FirstOrDefault();
+
+                if(pizza == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return Ok(pizza);
+                }
             }
         }
     }
