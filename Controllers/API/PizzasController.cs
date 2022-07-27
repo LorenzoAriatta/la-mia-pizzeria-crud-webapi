@@ -8,24 +8,17 @@ namespace la_mia_pizzeria_static.Controllers.API
     [ApiController]
     public class PizzasController : ControllerBase
     {
-        
-        protected string HTML(string name, string image)
-        {
-            string html = System.IO.File.ReadAllText(@"C:/.NET_projects/sharp/la-mia-pizzeria-crud-webapi/Views/Shared/_LayoutCards.cshtml");
-            html = html.Replace("{{name}}", name);
-            html = html.Replace("{{image}}", image);
-            //html = html.Replace("{{price}}", price);
-            //html = html.Replace("{{id}}", id);
-
-            return html;
-        }
-
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string? search)
         {
             using (PizzaContext db = new PizzaContext())
             {
                 IQueryable<Pizza> pizzaList = db.Pizza;
+
+                if(search != null && search != "")
+                {
+                    pizzaList = pizzaList.Where(p => p.Name.Contains(search));
+                }
 
                 return Ok(pizzaList.ToList());
             }
