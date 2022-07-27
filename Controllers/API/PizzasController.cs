@@ -44,35 +44,3 @@ namespace la_mia_pizzeria_static.Controllers.API
         }
     }
 }
-
-//creare partial e leggerlo istanziare dati e restituire html in response Ok(string"responsehtml")
-// API RESPONSE HTML
-
-/*[HttpGet]
-        public ContentResult HTMLcards(string name, string image)
-        {
-            var html = HTML(name, image);
-
-            return base.Content(html, "text/html");
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            using (PizzaContext db = new PizzaContext())
-            {
-                IQueryable<Pizza> pizzaList = db.Pizza;
-
-                foreach(Pizza p in pizzaList)
-                {
-                    string name = p.Name;
-                    string image = p.Image;
-                    //double price = p.Price;
-                    //int id = p.Id;
-
-                    HTMLcards(name, image);
-                }
-                
-                return Ok(pizzaList);
-            }
-        }*/
