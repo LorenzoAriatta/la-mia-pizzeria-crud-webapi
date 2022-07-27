@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace la_mia_pizzeria_static.Models
 {
@@ -10,6 +11,7 @@ namespace la_mia_pizzeria_static.Models
         [Required]
         public string Name { get; set; }
 
+        [JsonIgnore]
         public List<Pizza> Pizze { get; set; }
     }
 }
