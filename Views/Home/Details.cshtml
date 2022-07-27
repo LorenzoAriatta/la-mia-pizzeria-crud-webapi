@@ -1,0 +1,63 @@
+﻿@model int
+
+<h1 class="col-12 text-center my-5">JSON details</h1>
+
+<div class="d-flex flex-wrap">
+    <div class="containerList row justify-content-center" style="column-gap:20px; row-gap:20px"></div>
+</div>
+
+<script type="text/javascript" language="javascript">
+
+const id = @Model;
+
+axios.get(`/api/pizze/${id}`).then((response) => {
+    debugger;
+    console.log("API RESPONSE OK", response);
+
+    //let pizza = response.data;
+    let ingredients = "";
+
+    response.data.ingredients.forEach(i => {
+        let li = `<li>${i.name}</li>`;
+        ingredients += li;
+    })
+
+    document.querySelector('.containerList').innerHTML +=
+                               `
+<div class="container">
+    <div class="row">
+        <div class="col-6 align-self-center p-5 box-txt">
+            <h1 class="text-center text-danger">${response.data.name}</h1>
+            <h4 class="mt-5">Categoria:</h4>
+            <p class="mb-5">${response.data.category.name}</p>
+
+             <h4>Ingredienti:</h4>
+             <ul class="mb-5">
+                ${ingredients}
+             </ul>
+            
+            <h4>Descrizione:</h4>
+            <p class="mb-5">${response.data.description}</p>
+            
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area=""
+            asp-controller="Pizza" asp-action="Index">Torna alla lista!</a>
+
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area=""
+            asp-controller="Pizza" asp-action="Edit" asp-route-id="${response.data.id}">Modifica la pizza!</a>
+
+            <a class="btn-danger text-decoration-none text-black rounded-pill py-2 px-4 text-white" asp-area=""
+            asp-controller="Pizza" asp-action="Delete" asp-route-id="${response.data.id}">Cancella la pizza!</a>
+
+            <form></form>
+
+        </div>
+        <div class="col-6"><img id="img-detail" src="${response.data.image}"/></div>
+    </div>
+</div>
+                                `;
+
+}).catch(e => {
+    document.querySelector('.containerList').innerHTML += 
+    `<div class="alert alert-danger"><h1>Pizza non trovata...</h1></div>`
+})
+</script>
