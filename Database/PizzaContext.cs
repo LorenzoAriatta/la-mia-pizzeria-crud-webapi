@@ -13,6 +13,8 @@ namespace la_mia_pizzeria_static.Database
 
         public DbSet<Category> Categories { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
 
         public PizzaContext(DbContextOptions<PizzaContext> options) : base(options)
         {
@@ -23,6 +25,12 @@ namespace la_mia_pizzeria_static.Database
         {
             
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=db-pizza;Integrated Security=True");
