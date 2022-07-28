@@ -1,0 +1,49 @@
+﻿<div class="container">
+    <div class="text-center">
+        <h1>Admin page</h1>
+    </div>
+    <div class="message-box">
+
+    </div>
+</div>
+
+
+<script type="text/javascript" language="javascript">
+    
+let box = document.querySelector('.message-box');
+
+loadMessages();
+
+function loadMessages() {
+
+    axios.get('/api/messages').then((response) => {
+
+        console.log(response);
+
+        if (response.status == 200) {
+
+            box.innerHTML = "";
+
+            response.data.forEach(message => {
+                console.log('message', message);
+
+                box.innerHTML += `
+                
+                <div class="card w-75">
+                    <div class="card-body">
+                        <h3 class="card-title">${message.title}</h3>
+                        <h5>From: ${message.name} | Email: ${message.email}</h5>
+                        <p class="card-text">Commento: ${message.text}</p>
+                        <a href="#" class="btn btn-primary">Delete</a>
+                    </div>
+                </div>
+                
+                `;
+            });
+        }
+    }).catch(e => {
+        console.log(e);
+    });
+}
+
+</script>

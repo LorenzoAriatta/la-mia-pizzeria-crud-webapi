@@ -1,5 +1,7 @@
 ﻿using la_mia_pizzeria_static.Controllers.API;
+using la_mia_pizzeria_static.Database;
 using la_mia_pizzeria_static.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -29,9 +31,10 @@ namespace la_mia_pizzeria_static.Controllers
             return View("Contact");
         }
 
-        public IActionResult Privacy()
+        [Authorize]
+        public IActionResult AdminMessages()
         {
-            return View();
+            return View("InBox");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

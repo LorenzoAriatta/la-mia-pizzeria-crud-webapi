@@ -3,7 +3,7 @@
 <div>
     <div class="col-12 mt-5">
         <h2>Contattaci!</h2>
-        <form onsubmit="ContactUs(event)">
+        <form id="contact-form" onsubmit="ContactUs(event)">
             <div class="mb-3">
                 <label for="contact-email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="contact-email" />
@@ -52,6 +52,6 @@ function ContactUs(e) {
         alert("Messaggio inviato!");
 
     });
-}    
+} 
 
 </script>

@@ -33,5 +33,16 @@ namespace la_mia_pizzeria_static.Controllers.API
 
             return Ok(new {Status = "OK", Message = "Dati inseriti correttamente!"});
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            using (PizzaContext db = new PizzaContext())
+            {
+                IQueryable<Message> messageList = db.Messages;
+
+                return Ok(messageList.ToList());
+            }
+        }
     }
 }
