@@ -15,19 +15,30 @@
 
 <script type="text/javascript" language="javascript">
 
+let time = null;
+
     document.getElementById("search-input").addEventListener("keyup", search);
     const doc = document.querySelector('.containerList');
 
     function search(event) {
 
         var value = document.getElementById("search-input").value;
-        loadList(value);
+
+        if (time != null) {
+            learTimeout(time); 
+        }
+
+        time = setTimeout(loadList, 500, value);
+        
+        //loadList(value);
     }
 
     loadList(null);
 
     function loadList(search) {
 
+        time = null;
+        
         axios.get('/api/pizze', { params: {search:search}}).then((response) => {
 
             console.log(response);
